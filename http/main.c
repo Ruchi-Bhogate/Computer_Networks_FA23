@@ -21,11 +21,10 @@ int main(int argc, char* argv[]) {
   /*
     STUDENT CODE HERE
    */
-   char response[5000]; //To retrive minimum 4096 bytes
-   char msg[1200]; //To form the HTTP request
+   char response[5000];
+   char msg[1200];
    char s1[50] = " HTTP/1.1\r\n";
    char s2[100] = "Host: ";
-   //Using string functions to construct the request
    strcpy(msg,verb);
    strcat(path,s1);
    strcat(msg, " ");
