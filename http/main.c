@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <string.h>
-
+// Test
 void send_http(char* host, char* msg, char* resp, size_t len);
 
 
@@ -21,6 +21,21 @@ int main(int argc, char* argv[]) {
   /*
     STUDENT CODE HERE
    */
+   char response[5000]; //To retrive minimum 4096 bytes
+   char msg[1200]; //To form the HTTP request
+   char s1[50] = " HTTP/1.1\r\n";
+   char s2[100] = "Host: ";
+   strcpy(msg,verb);
+   strcat(path,s1);
+   strcat(msg, " ");
+   strcat(msg,path);
+   strcat(s2,host);
+   strcat(msg,s2);
+   strcat(msg,"\r\n\r\n");
+
+  printf("%s\n", msg);
+   send_http(host, msg, response, 5000);
+   printf("%s\n", response);
   
   return 0;
 }
