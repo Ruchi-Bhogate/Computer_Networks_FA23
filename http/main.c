@@ -21,9 +21,9 @@ int main(int argc, char* argv[]) {
   /*
     STUDENT CODE HERE
    */
-   char response[6000];
+   char response[5000];
    char msg[1200];
-   char s1[50] = " HTTP/1.1\r\n";
+   char s1[50] = " HTTP/1.0\r\n";
    char s2[100] = "Host: ";
    //creating the http request message
    strcpy(msg,verb);
@@ -33,7 +33,7 @@ int main(int argc, char* argv[]) {
    strcat(s2,host);
    strcat(msg,s2);
    strcat(msg,"\r\n\r\n");
-   send_http(host, msg, response, 6000);
+   send_http(host, msg, response, 5000);
    printf("%s\n", response);
   
   return 0;
