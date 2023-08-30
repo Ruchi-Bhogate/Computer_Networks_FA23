@@ -21,7 +21,7 @@ int main(int argc, char* argv[]) {
   /*
     STUDENT CODE HERE
    */
-   char response[5000];
+   char response[7000];
    char msg[1200];
    char s1[50] = " HTTP/1.0\r\n";
    char s2[100] = "Host: ";
@@ -33,7 +33,7 @@ int main(int argc, char* argv[]) {
    strcat(s2,host);
    strcat(msg,s2);
    strcat(msg,"\r\n\r\n");
-   send_http(host, msg, response, 5000);
+   send_http(host, msg, response, 7000);
    printf("%s\n", response);
   
   return 0;
