@@ -25,5 +25,35 @@ int main(int argc, char* argv[]) {
      STUDENT CODE HERE
    */
   
+  int socket = connect_smtp("lunar.open.sice.indiana.edu", 25);
+  char response[4096];
+  send_smtp(socket, "HELO iu.edu\r\n", response, 4096);
+  printf("%s\n", response);
+  char msg1[100];
+  strcpy(msg1,"MAIL FROM:");
+  strcat(msg1,rcpt);
+  strcat(msg1,"\r\n");
+  send_smtp(socket, msg1, response, 4096);
+  printf("%s\n", response);
+  char msg2[100];
+  strcpy(msg2,"RCPT TO:");
+  strcat(msg2,rcpt);
+  strcat(msg2,"\r\n");
+  send_smtp(socket, msg2, response, 4096);
+  printf("%s\n", response);
+  send_smtp(socket, "DATA\r\n", response, 4096);
+  printf("%s\n", response);
+  FILE *fptr;
+  fptr = fopen(filepath, "r");
+  char s1[100];
+  char email[5000];
+  while(fgets(s1,100,fptr)){
+    strcat(email,s1);
+  }
+  fclose(fptr);
+  strcat(email,"\r\n.\r\n");
+  send_smtp(socket, email, response, 4096);
+  printf("%s\n", response);
+
   return 0;
 }
