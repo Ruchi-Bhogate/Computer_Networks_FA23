@@ -17,7 +17,7 @@ def chat_server(iface:str, port:int, use_udp:bool) -> None:
         
         while True:
 
-            msg_from_client, clientAddress = serverSocketUDP.recvfrom(255)
+            msg_from_client, clientAddress = serverSocketUDP.recvfrom(256)
             msg_from_client = msg_from_client.decode()
 
             if msg_from_client == 'hello':
@@ -66,7 +66,7 @@ def chat_client(host:str, port:int, use_udp:bool) -> None:
 
             message_from_input = input()
             clientSocketUDP.sendto(message_from_input.encode(),address_tuple)
-            msg_from_server, address = clientSocketUDP.recvfrom(255)
+            msg_from_server, address = clientSocketUDP.recvfrom(256)
             msg_from_server = msg_from_server.decode()
 
             print(msg_from_server)
@@ -88,7 +88,7 @@ def chat_client(host:str, port:int, use_udp:bool) -> None:
 
             message_from_input = input()
             clientSocketTCP.send(message_from_input.encode())
-            msg_from_server = clientSocketTCP.recv(255)
+            msg_from_server = clientSocketTCP.recv(256)
             msg_from_server = msg_from_server.decode()
 
             print(msg_from_server)
@@ -104,7 +104,7 @@ def tcp_connection(connectionSocket,clientAddress):
 
     while True:
 
-        msg_from_client = connectionSocket.recv(255)
+        msg_from_client = connectionSocket.recv(256)
         print('got message from ', clientAddress)
         msg_from_client = msg_from_client.decode()
         
