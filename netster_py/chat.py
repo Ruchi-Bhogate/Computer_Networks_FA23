@@ -48,7 +48,7 @@ def chat_server(iface:str, port:int, use_udp:bool) -> None:
             connection_counter += 1
             print('connection ', connection_counter, ' from ', clientAddress)
             new_thread = threading.Thread(target = tcp_connection, args = (connectionSocket, clientAddress))
-            thread.start()
+            new_thread.start()
 
     pass
 
@@ -96,7 +96,7 @@ def chat_client(host:str, port:int, use_udp:bool) -> None:
             if (message_from_input == 'goodbye' and msg_from_server == 'farewell') or (message_from_input == 'exit' and msg_from_server == 'ok'):
                 break
 
-        clientSocketUDP.close()
+        clientSocketTCP.close()
 
     pass
 
@@ -118,5 +118,5 @@ def tcp_connection(connectionSocket,clientAddress):
         else:
             connectionSocket.sendto(msg_from_client.encode())
 
-    serverSocketTCP.close()
+    connectionSocket.close()
     return
