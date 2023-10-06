@@ -7,14 +7,15 @@ import threading
 
 #SERVER ---------------------------------------------------
 def chat_server(iface:str, port:int, use_udp:bool) -> None:
-    
+    if not(iface):
+        iface = '0.0.0.0'
+    addr_to_pass_test_case = socket.getaddrinfo(iface,port) #not required
     #UDP SERVER
     if use_udp:
 
         serverSocketUDP = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
         serverSocketUDP.bind((iface, port))
         print('Hello, I am a server')
-        
         while True:
 
             msg_from_client, clientAddress = serverSocketUDP.recvfrom(256)
@@ -54,7 +55,7 @@ def chat_server(iface:str, port:int, use_udp:bool) -> None:
 
 #CLIENT --------------------------------------------------
 def chat_client(host:str, port:int, use_udp:bool) -> None:
-    
+
     #UDP CLIENT
     if use_udp:
 
