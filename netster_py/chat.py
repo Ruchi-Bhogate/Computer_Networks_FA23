@@ -7,7 +7,7 @@ import threading
 
 #had to add '\n' because autograder client is programmed in C and Python language strips '\n'
 #code functions without '\n' hence it was not necessary to add it
-#but required to pass autograder
+#but required to work with client that is programmed in C
 
 #SERVER ---------------------------------------------------
 def chat_server(iface:str, port:int, use_udp:bool) -> None:
